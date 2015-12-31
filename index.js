@@ -1,7 +1,13 @@
 var http = require("http");
 
-http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
-}).listen(8888);
+const PORT = 8080;
+
+function handleRequest(request, response) {
+	response.end('Path hit: ' + request.url);
+}
+
+var server = http.createServer(handleRequest);
+
+server.listen(PORT, function(){
+	console.log("Server listening on: http://localhost:%s", PORT);
+});
